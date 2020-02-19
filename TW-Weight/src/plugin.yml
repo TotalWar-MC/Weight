@@ -1,0 +1,65 @@
+name: ArmorWeight
+authors: [Steffbeard, aka zune, arzuino]
+main: com.steffbeard.totalwar.core.mechanics.armor.ArmorWeightPlugin
+version: 1.0.0
+
+commands:
+  weight:
+    description: Displays your current weight
+    usage: /weight [help]
+  armorweight:
+    descriptions: Displays information about ArmorWeight
+    usage: /armorweight [help]
+    aliases: [armourweight]
+
+permissions:
+  armorweight.*:
+    description: Gives access to all ArmorWeight permissions
+    children:
+      armorweight.weight.*: true
+      armorweight.effect.*: true
+  armorweight.weight.*:
+    description: Enables all weight influencing factors
+    children:
+      armorweight.weight.armor: true
+  armorweight.weight.armor:
+    description: Makes your weight be changed by armor
+    default: true
+  armorweight.effect.*:
+    description: Enables all effects associated with weight
+    children:
+      armorweight.effect.speed: true
+  armorweight.effect.speed:
+    description: Makes your movement speed change depending on your weight
+    default: true
+  armorweight.command.*:
+    description: Gives access to all ArmorWeight commands
+    children:
+      armorweight.command.weight.*: true
+      armorweight.command.plugin.*: true
+  armorweight.command.weight.*:
+    description: Gives access to the full /weight command
+    children:
+      armorweight.command.weight.getown: true
+      armorweight.command.weight.getothers: true
+  armorweight.command.weight.getown:
+    description: Allows you to display your current weight
+    default: true
+  armorweight.command.weight.getothers:
+    description: Allows you to display the current weight of other players
+    default: op
+  armorweight.command.plugin.*:
+    description: Gives access to the full /armorweight command
+    children:
+      armorweight.command.plugin.info: true
+      armorweight.command.plugin.reload: true
+      armorweight.command.plugin.debug: true
+  armorweight.command.plugin.info:
+    description: Displays information about ArmorWeight
+    default: true
+  armorweight.command.plugin.reload:
+    description: Allows you to reload the configurations of ArmorWeight
+    default: op
+  armorweight.command.plugin.debug:
+    description: Allows you to print debug information on ArmorWeight and force recalculation of the player's weight
+    default: op
